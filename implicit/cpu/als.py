@@ -227,11 +227,8 @@ class AlternatingLeastSquares(MatrixFactorizationBase):
             user_items = self.alpha * user_items
 
         user_factors = np.zeros((users, self.factors), dtype=self.dtype)
-        _als._least_squares(
-            self.YtY,
-            user_items.indptr,
-            user_items.indices,
-            user_items.data.astype("float32"),
+        self.solver(
+            user_items,
             user_factors,
             self.item_factors,
             self.regularization,
