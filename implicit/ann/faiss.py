@@ -210,7 +210,7 @@ class FaissModel(RecommenderBase):
             )
 
         if not self.approximate_recommend:
-            warnings.warning("Calling recommend on a FaissModel with approximate_recommend=False")
+            warnings.warn("Calling recommend on a FaissModel with approximate_recommend=False")
             return self.model.recommend(
                 userid,
                 user_items,
@@ -222,7 +222,7 @@ class FaissModel(RecommenderBase):
             )
 
         # support recalculate_user if possible (TODO: come back to this since its a bit of a hack)
-        if hasattr(self.model, "+_user_factor"):
+        if hasattr(self.model, "_user_factor"):
             user = self.model._user_factor(
                 userid, user_items, recalculate_user
             )  # pylint: disable=protected-access
